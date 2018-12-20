@@ -32,6 +32,10 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
 
+  updateUserProfile(user) {
+    return this.http.put(environment.apiBaseUrl + '/userProfile', user);
+  }
+
 
   //Helper Methods
 

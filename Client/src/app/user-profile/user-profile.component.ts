@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class UserProfileComponent implements OnInit {
   userDetails;
+  showSucessMessage: boolean;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -23,9 +24,34 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  updateProfile() {
+    this.userService.updateUserProfile(this.userDetails).subscribe(
+        res => {
+          this.userService.getUserProfile().subscribe(
+              res => {
+                this.userDetails = res['user'];
+              },
+              err => {
+                console.log(err);
+
+              }
+          );
+          this.showSucessMessage = true;
+        },
+        err => {
+          console.log(err);
+
+        }
+    );
+  }
+
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+  }
+
+  showCustomers() {
+    this.router.navigateByUrl('/customers');
   }
 
 }

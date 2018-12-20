@@ -7,13 +7,13 @@ var User = mongoose.model('User');
 passport.use(
     new localStrategy({ usernameField: 'email' },
         (username, password, done) => {
-            User.findOne({ email: username },
+            User.findOne({ '$or': [{email: username}, {username: username}] },
                 (err, user) => {
                     if (err)
                         return done(err);
                     // unknown user
                     else if (!user)
-                        return done(null, false, { message: 'Email is not registered' });
+                        return done(null, false, { message: 'Email or username is not registered' });
                     // wrong password
                     else if (!user.verifyPassword(password))
                         return done(null, false, { message: 'Wrong password.' });

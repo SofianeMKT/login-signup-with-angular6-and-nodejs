@@ -1,3 +1,7 @@
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+    Saved successfully
+</div>
 <table *ngIf="userDetails" class="table-fill">
   <thead>
       <tr>
@@ -5,21 +9,35 @@
       </tr>
   </thead>
   <tbody>
-      <tr>
-          <td>First Name</td>
-          <td>{{userDetails.fullName.split(' ')[0]}}</td>
-      </tr>
-      <tr>
-          <td>Last Name</td>
-          <td>{{userDetails.fullName.split(' ')[1]}}</td>
+      <tr class="editable-section">
+          <td>Name</td>
+          <td [hidden]="showEdit">{{userDetails.fullName}} &nbsp;&nbsp; <span (click)="showEdit = !showEdit">Edit</span> </td>
+          <td [hidden]="!showEdit"><input type="text" name="fullname" #fullname="ngModel" [(ngModel)]="userDetails.fullName"/> &nbsp;&nbsp; <span (click)="showEdit = !showEdit; updateProfile()">Save</span> </td>
       </tr>
       <tr>
           <td>Email</td>
           <td>{{userDetails.email}}</td>
       </tr>
       <tr>
+          <td>Username</td>
+          <td>{{userDetails.username}}</td>
+      </tr>
+      <tr>
+          <td>Address</td>
+          <td>{{userDetails.address}}</td>
+      </tr>
+      <tr>
+          <td>Mobile</td>
+          <td>{{userDetails.mobile}}</td>
+      </tr>
+      <tr>
           <td colspan="2" class="text-center">
               <input type="button" (click)="onLogout()" value="Logout" />
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2" class="text-center">
+              <input type="button" (click)="showCustomers()" value="Show Customer List" />
           </td>
       </tr>
   </tbody>

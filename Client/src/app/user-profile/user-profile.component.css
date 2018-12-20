@@ -1,0 +1,11 @@
+.editable-section input {
+    width: 50%;
+    padding: 3px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+}
+
+.editable-section span {
+   color: blue;
+    cursor: pointer;
+}
