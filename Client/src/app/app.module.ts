@@ -14,6 +14,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CustomersComponent } from './customers/customer.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserService } from './shared/user.service';
+import { CustomersService } from './shared/customers.servive';
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -37,7 +38,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },AuthGuard,UserService],
+  },AuthGuard,UserService,CustomersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

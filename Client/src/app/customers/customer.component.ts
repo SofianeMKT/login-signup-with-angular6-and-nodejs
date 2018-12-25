@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { CustomersService } from '../shared/customers.servive';
 import { Router } from "@angular/router";
 
 @Component({
@@ -8,13 +8,13 @@ import { Router } from "@angular/router";
     styleUrls: ['./customer.component.css']
 })
 export class CustomersComponent implements OnInit {
-    userDetails;
-    constructor(private userService: UserService, private router: Router) { }
+    customers;
+    constructor(private customersService: CustomersService, private router: Router) { }
 
     ngOnInit() {
-        this.userService.getUserProfile().subscribe(
+        this.customersService.getCustomers().subscribe(
             res => {
-                this.userDetails = res['user'];
+                this.customers = res['customers'];
             },
             err => {
                 console.log(err);

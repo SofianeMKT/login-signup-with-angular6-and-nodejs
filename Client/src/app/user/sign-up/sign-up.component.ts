@@ -39,7 +39,10 @@ export class SignUpComponent implements OnInit {
     this.userService.selectedUser = {
       fullName: '',
       email: '',
-      password: ''
+      password: '',
+      username : '',
+      address : '',
+      mobile : ''
     };
     form.resetForm();
     this.serverErrorMessages = '';
